@@ -2,7 +2,6 @@ package com.frame.task.result;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * @Package: com.frame.task.result
@@ -17,7 +16,7 @@ import lombok.Setter;
 public enum  Result{
 
     ok("ok", "执行成功"),
-    failed("err", "执行失败"),
+    failed("error", "执行失败"),
     ;
     private String code;
     private String msg;

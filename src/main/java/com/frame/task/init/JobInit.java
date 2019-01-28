@@ -28,13 +28,9 @@ public class JobInit {
     }
 
     private void init() throws SchedulerException {
-
         scheduler = StdSchedulerFactory.getDefaultScheduler();
-
         event();
-
         scheduler.start();
-
     }
 
     private void event(){
