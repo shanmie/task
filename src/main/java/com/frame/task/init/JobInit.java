@@ -47,8 +47,7 @@ public class JobInit {
 
     private void event(TaskDTO dto) {
         try {
-            JobDetail job = JobBuilder.newJob(JobFactory.class).withIdentity("job_" + dto.getJobId(), "group")
-                    .build();
+            JobDetail job = JobBuilder.newJob(JobFactory.class).withIdentity("job_" + dto.getJobId(), "group").build();
             job.getJobDataMap().put("taskDto", dto);
             CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity("trigger_" + dto.getTriggerId(), "group").startNow()
                     .withSchedule(CronScheduleBuilder.cronSchedule(dto.getCron())).build();
