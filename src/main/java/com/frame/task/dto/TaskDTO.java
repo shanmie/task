@@ -17,11 +17,14 @@ public class TaskDTO {
     private int id;
     private int triggerId;
     private int jobId;
-    private int jobType;
+    public int jobType;
+    private int jobStatus;
     private int runStatus;
+    private String jobName;
+    private String jobDesc;
     private String group;
     private String cron;
-    private String clazz;
+    public String clazz;
     private String sqlText;
     private String scriptText;
     private long createTime;

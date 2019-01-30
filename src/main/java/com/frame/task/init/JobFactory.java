@@ -1,9 +1,12 @@
 package com.frame.task.init;
 
 import com.frame.task.abs.JavaTask;
+import com.frame.task.dto.TaskDTO;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.quartz.Job;
-import org.quartz.JobExecutionContext;
+import org.apache.commons.lang3.StringUtils;
+import org.quartz.*;
+
 
 /**
  * @Package: com.frame.task.init
@@ -14,22 +17,22 @@ import org.quartz.JobExecutionContext;
  * @Version: 1.0
  */
 @Slf4j
+@NoArgsConstructor
 public class JobFactory implements Job {
     @Override
-    public void execute(JobExecutionContext jobExecutionContext) {
-        execute();
+    public void execute(JobExecutionContext ctx) {
+        JobDataMap dataMap = ctx.getJobDetail().getJobDataMap();
+        TaskDTO dto = (TaskDTO) dataMap.get("taskDto");
+        execute(dto);
     }
 
     /**
-     *
+     * 执行
      */
-    private void execute() {
-        log.info("这里开始执行job");
-        //这里类型应该从数据中读取
-        int val = 1;
-        switch (val) {
+    private void execute(TaskDTO dto) {
+        switch (dto.jobType) {
             case 1:
-                executeJava();
+                executeJava(dto.clazz);
                 break;
             case 2:
                 executeScript();
@@ -41,24 +44,21 @@ public class JobFactory implements Job {
                 executeOther();
                 break;
         }
-
     }
 
-    private void executeJava() {
+    private void executeJava(String clazz) {
+        if (StringUtils.isEmpty(clazz)) {
+            return;
+        }
         try {
-            log.info("java 定时任务");
-
             long statTime = System.currentTimeMillis();
-            //这里从应该从数据读出所有全类名地址
-            String clazz = "com.frame.task.task.TestFirstTask";
             JavaTask task = (JavaTask) Class.forName(clazz).newInstance();
-            log.info(String.format("run from class is {%S}",clazz));
+            log.info("run class is {{}}", clazz);
             task.run();
             long endTime = System.currentTimeMillis();
-
-            log.info(String.format("耗时时长 : %s ms",(endTime - statTime)));
-        }catch (Exception e){
-            log.error("{%s}",e);
+            log.info("耗时时长 : {{}} ms", (endTime - statTime));
+        } catch (Exception e) {
+            log.error("{{}}", e);
         }
     }
 
