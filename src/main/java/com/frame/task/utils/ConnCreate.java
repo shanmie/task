@@ -14,10 +14,9 @@ import cn.org.zax.repository.DBRepository;
  * @Version: 1.0
  */
 public class ConnCreate {
-    static private DBRepository dbRepository;
 
     static public DBRepository getDbRepository()  {
         Config config = new Config().setUrl("jdbc:mysql://127.0.0.1:3306/").setUsername("root").setPassword("root");
-        return dbRepository = DB.create(config);
+        return  DB.create(config);
     }
 }

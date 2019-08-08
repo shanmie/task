@@ -36,7 +36,7 @@ public class JobInit {
     }
 
     private void addEchoJob() {
-        List<TaskDTO> dtoList = ConnCreate.getDbRepository().selectAll(new DBSupport("select * from %task", "testboot"), new Mapper());
+        List<TaskDTO> dtoList = ConnCreate.getDbRepository().selectAll("select * from :task", "testboot", new Mapper());
         for (TaskDTO dto : dtoList) {
             if (dto.getJobStatus() == 2) {//排除状态 2 为作废的任务
                 continue;
