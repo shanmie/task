@@ -1,7 +1,6 @@
 package com.frame.task.init;
 
-import cn.org.zax.mapper.BindMapper;
-import cn.org.zax.support.DBSupport;
+import cn.org.zax.mapper.BindBeanMapper;
 import com.frame.task.dto.TaskDTO;
 import com.frame.task.utils.ConnCreate;
 import lombok.extern.slf4j.Slf4j;
@@ -57,7 +56,7 @@ public class JobInit {
         }
     }
 
-    class Mapper implements BindMapper {
+    class Mapper implements BindBeanMapper {
         @Override
         public Object mapper(ResultSet rs) throws SQLException {
             TaskDTO dto = new TaskDTO();

@@ -4,7 +4,6 @@ import com.frame.task.abs.JavaTask;
 import com.frame.task.dto.TaskDTO;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.quartz.*;
 
 
@@ -47,7 +46,7 @@ public class JobFactory implements Job {
     }
 
     private void executeJava(String clazz) {
-        if (StringUtils.isEmpty(clazz)) {
+        if (clazz.length() <=0) {
             return;
         }
         try {
