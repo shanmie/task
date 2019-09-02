@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class TestMoreTask implements JavaTask {
 
     public static void main(String[] args) {
-        TestFirstTask test = new TestFirstTask();
+        TestMoreTask test = new TestMoreTask();
         test.run();
     }
 
