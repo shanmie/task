@@ -52,7 +52,7 @@ public class JobInit {
                     .withSchedule(CronScheduleBuilder.cronSchedule(dto.getCron())).build();
             scheduler.scheduleJob(job, trigger);
         } catch (SchedulerException e) {
-            log.error("{{}}", e);
+            log.error(e.getMessage(), e);
         }
     }
 

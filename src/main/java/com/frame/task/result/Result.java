@@ -15,8 +15,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum  Result{
 
-    ok("ok", "执行成功"),
-    failed("error", "执行失败"),
+    successfully("Successfully", "执行成功"),
+    failed("Fail", "执行失败"),
     ;
     private String code;
     private String msg;

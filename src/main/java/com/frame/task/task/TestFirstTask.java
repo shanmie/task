@@ -24,10 +24,10 @@ public class TestFirstTask implements JavaTask {
     @Override
     public Result run() {
         //do something
-        log.info(String.format("执行结果{%s},{%s}",Result.ok.getCode(),Result.ok.getMsg()));
+        log.info(String.format("执行结果{%s},{%s}",Result.successfully.getCode(),Result.successfully.getMsg()));
         int a = 20 ,b =30 ;
         log.info(String.format("a*b = {%s}",a*b));
-        return Result.ok;
+        return Result.successfully;
     }
 
 }

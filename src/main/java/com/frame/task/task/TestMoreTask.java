@@ -25,6 +25,6 @@ public class TestMoreTask implements JavaTask {
         //do something
         log.info(String.format("执行结果{%s},{%s}",Result.failed.getCode(),Result.failed.getMsg()));
 
-        return Result.ok;
+        return Result.failed;
     }
 }

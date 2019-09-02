@@ -31,7 +31,7 @@ public class JobFactory implements Job {
     private void execute(TaskDTO dto) {
         switch (dto.jobType) {
             case 1:
-                executeJava(dto.clazz);
+                executeJava(dto);
                 break;
             case 2:
                 executeScript();
@@ -45,19 +45,19 @@ public class JobFactory implements Job {
         }
     }
 
-    private void executeJava(String clazz) {
+    private void executeJava(TaskDTO dto) {
+        String clazz = dto.clazz;
         if (clazz.length() <=0) {
             return;
         }
         try {
-            long statTime = System.currentTimeMillis();
             JavaTask task = (JavaTask) Class.forName(clazz).newInstance();
-            log.info("run class is {{}}", clazz);
+            long statTime = System.currentTimeMillis();
             task.run();
             long endTime = System.currentTimeMillis();
-            log.info("耗时时长 : {{}} ms", (endTime - statTime));
+            log.info("{} 耗时时长 : {} ms", clazz ,(endTime - statTime));
         } catch (Exception e) {
-            log.error("{{}}", e);
+            log.error(e.getMessage(), e);
         }
     }
 
