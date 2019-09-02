@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Slf4j
 public class JobInit {
-    Scheduler scheduler;
+    private Scheduler scheduler;
 
     public static void main(String[] args) throws SchedulerException {
         JobInit ji = new JobInit();
